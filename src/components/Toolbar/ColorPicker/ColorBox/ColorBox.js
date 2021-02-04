@@ -25,18 +25,23 @@ class ColorBox extends React.Component {
         .desaturate(0.2);
       border = `2px solid ${borderColor}`;
     } else {
-      border = "1px solid #bbbbbb";
+      border = "2px solid #4F5A65";
     }
 
     return border;
   };
 
   render() {
-    const { color, active } = this.props;
+    const { color, active, name } = this.props;
     const className = classnames("colorBox", { activeBox: active });
 
     return (
       <div
+        role="radio"
+        tabIndex="0"
+        aria-checked={active}
+        aria-label={name}
+        value={color}
         className={className}
         onClick={this.handleClick}
         data-color={color}

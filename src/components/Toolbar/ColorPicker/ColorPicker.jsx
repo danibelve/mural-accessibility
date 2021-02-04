@@ -16,16 +16,22 @@ class ColorPicker extends React.Component {
 
   render() {
     const { currentColor } = this.props;
+    console.log(COLOR_PICKER_DEFAULT);
     const colorBoxes = COLOR_PICKER_DEFAULT.map(color => (
       <ColorBox
-        color={color}
+        color={color.hexa}
         onClick={this.pickColor}
-        active={currentColor === color}
+        name={color.name}
+        active={currentColor === color.hexa}
         key={uniqueId()}
       />
     ));
 
-    return <div className="ColorPicker">{colorBoxes}</div>;
+    return (
+      <div className="ColorPicker" role="radiogroup" aria-label="Color options">
+        {colorBoxes}
+      </div>
+    );
   }
 }
 

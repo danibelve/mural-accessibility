@@ -11,9 +11,9 @@ class FontAwesomeButton extends React.Component {
   render() {
     const { faClass, handleOnClick } = this.props;
     return (
-      <div className="icon" onClick={handleOnClick}>
+      <button className="icon" onClick={handleOnClick} aria-label="Delete Note">
         <i className={faClass} aria-hidden="true" />
-      </div>
+      </button>
     );
   }
 }

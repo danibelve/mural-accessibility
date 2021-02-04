@@ -5,8 +5,20 @@ export const NOTE_DEFAULT_COLOR = "#ffe4e1";
 
 // Toolbar Defaults
 export const COLOR_PICKER_DEFAULT = [
-  "#ffe4e1",
-  "#e3cbed",
-  "#c4e9ff",
-  "#deffce"
+  {
+    hexa: "#ffe4e1",
+    name: "pink"
+  },
+  {
+    hexa: "#e3cbed",
+    name: "violet"
+  },
+  {
+    hexa: "#c4e9ff",
+    name: "light blue"
+  },
+  {
+    hexa: "#deffce",
+    name: "green"
+  }
 ];
