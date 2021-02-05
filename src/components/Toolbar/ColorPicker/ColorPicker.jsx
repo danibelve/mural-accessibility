@@ -16,7 +16,6 @@ class ColorPicker extends React.Component {
 
   render() {
     const { currentColor } = this.props;
-    console.log(COLOR_PICKER_DEFAULT);
     const colorBoxes = COLOR_PICKER_DEFAULT.map(color => (
       <ColorBox
         color={color.hexa}

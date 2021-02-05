@@ -7,12 +7,28 @@ import "./styles.css";
 class ColorBox extends React.Component {
   static propTypes = {
     onClick: PropTypes.func,
+    focus: PropTypes.func,
     color: PropTypes.string.isRequired
   };
 
   handleClick = e => {
     const color = e.target.dataset.color;
     this.props.onClick(color);
+  };
+
+  /* prevents element to lose focus */
+  componentDidMount() {
+    console.log("volvi a renderizar");
+    document.querySelector('div[aria-checked="true"]').focus();
+  }
+
+  onKeyPress = e => {
+    const enter = e.key === "Enter";
+    if (enter) {
+      e.preventDefault();
+      const color = e.target.dataset.color;
+      this.props.onClick(color);
+    }
   };
 
   getBorderStyle = () => {
@@ -44,6 +60,7 @@ class ColorBox extends React.Component {
         value={color}
         className={className}
         onClick={this.handleClick}
+        onKeyPress={this.onKeyPress}
         data-color={color}
         style={{ background: color, border: this.getBorderStyle() }}
       />
