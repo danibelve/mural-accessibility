@@ -16,12 +16,14 @@ class Mural extends React.Component {
     addNote: PropTypes.func,
     enableMultipleSelection: PropTypes.func,
     disableMultipleSelection: PropTypes.func,
-    clearSelectedNotes: PropTypes.func
+    clearSelectedNotes: PropTypes.func,
+    editNote: PropTypes.func
   };
 
   constructor(props) {
     super(props);
     this.mural = React.createRef();
+    this.button = React.createRef();
   }
 
   componentDidMount() {
@@ -29,12 +31,20 @@ class Mural extends React.Component {
     this.mural.current.addEventListener("dblclick", this.addNoteToMural);
     this.mural.current.addEventListener("keydown", this.handleKeyDown);
     this.mural.current.addEventListener("keyup", this.handleKeyUp);
+    this.button.current.addEventListener(
+      "click",
+      this.addNoteToMuralKeyboardFriendly
+    );
   }
 
   clearSelectedNotes = e => {
     if (e.target.isEqualNode(this.mural.current)) {
       this.props.clearSelectedNotes();
     }
+  };
+
+  clearSelectedNotesKeyboardFriendly = e => {
+    this.props.clearSelectedNotes();
   };
 
   addNoteToMural = e => {
@@ -57,6 +67,34 @@ class Mural extends React.Component {
     };
 
     addNote(noteToAdd);
+  };
+
+  addNoteToMuralKeyboardFriendly = e => {
+    e.stopImmediatePropagation();
+    if (e.target.classList.contains("sticky-note-content")) {
+      return;
+    }
+
+    const { notes } = this.props;
+
+    const counter = Object.keys(notes).length + 1;
+
+    const { currentColor, addNote } = this.props;
+
+    const width = NOTE_DEFAULT_HEIGHT;
+    const height = NOTE_DEFAULT_WIDTH;
+
+    const noteToAdd = {
+      text: "",
+      color: currentColor,
+      width,
+      height,
+      x: counter * (pixelsToInt(width) + 10),
+      y: 0
+    };
+
+    addNote(noteToAdd);
+    console.log(StickyNote);
   };
 
   handleKeyDown = e => {
@@ -95,6 +133,9 @@ class Mural extends React.Component {
 
     return (
       <div id="Mural" className="Mural" ref={this.mural} tabIndex="-1">
+        <button type="button" ref={this.button}>
+          Add note blah blah blah, el boton mas largo que viste en tu vida
+        </button>
         <Welcome />
         {StickyNotes}
         <Toolbar />

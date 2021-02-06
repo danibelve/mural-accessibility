@@ -8,10 +8,26 @@ class FontAwesomeButton extends React.Component {
     handleOnClick: PropTypes.func
   };
 
+  constructor(props) {
+    super(props);
+    this.deleteButton = React.createRef();
+  }
+
+  componentDidMount() {
+    const { handleOnClick } = this.props;
+
+    this.deleteButton.current.addEventListener("click", handleOnClick);
+  }
+
   render() {
-    const { faClass, handleOnClick } = this.props;
+    const { faClass } = this.props;
     return (
-      <button className="icon" onClick={handleOnClick} aria-label="Delete Note">
+      <button
+        type="button"
+        className="icon"
+        aria-label="Delete Note"
+        ref={this.deleteButton}
+      >
         <i className={faClass} aria-hidden="true" />
       </button>
     );

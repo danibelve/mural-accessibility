@@ -47,8 +47,9 @@ class ClipboardManager extends React.Component {
     return (
       <div className="ClipboardManager">
         {!!clipboardCount ? (
-          <div className="clipboard-icon">
+          <div className="clipboard-icon" role="alert" aria-atomic="true">
             <i className="fa fa-clipboard" aria-hidden="true" />
+            <p className="sr-only"> current number of item in the clipboard:</p>
             <span className="clipboard-counter">{clipboardCount}</span>
           </div>
         ) : null}

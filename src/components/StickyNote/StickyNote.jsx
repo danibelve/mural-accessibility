@@ -31,12 +31,25 @@ class StickyNote extends React.Component {
   constructor(props) {
     super(props);
     this.textarea = React.createRef();
+    this.note = React.createRef();
     this.state = { editMode: false };
   }
 
   componentDidMount() {
     this.textarea.current.addEventListener("click", this.selectNote);
     this.textarea.current.addEventListener("dblclick", this.editNote);
+    this.textarea.current.addEventListener(
+      "keydown",
+      this.stopEditingKeyboardFriendly
+    );
+    this.note.current.addEventListener(
+      "keydown",
+      this.editNoteKeyboardFriendly
+    );
+    this.note.current.addEventListener(
+      "keyup",
+      this.handleFocusKeyboardFriendly
+    );
   }
 
   selectNote = e => {
@@ -59,7 +72,54 @@ class StickyNote extends React.Component {
     this.textarea.current.focus();
   };
 
-  handleDelete = () => {
+  editNoteKeyboardFriendly = e => {
+    const enter = e.key === "Enter";
+    const tab = e.shiftKey && e.key === "Tab";
+
+    // e.stopPropagation not working??
+    if (enter && e.srcElement === this.note.current) {
+      e.preventDefault();
+      this.setState({ editMode: true });
+      this.textarea.current.focus();
+    } else if (tab) {
+      const { clearSelectedNotesKeyboardFriendly } = this.props;
+      clearSelectedNotesKeyboardFriendly;
+      this.note.current.focus();
+    }
+  };
+
+  stopEditingKeyboardFriendly = e => {
+    const escape = e.key === "Escape";
+
+    if (escape) {
+      e.preventDefault();
+      this.setState({ editMode: false });
+      this.selectNote();
+    }
+  };
+
+  handleFocusKeyboardFriendly = e => {
+    const tab = e.key === "Tab";
+
+    if (tab) {
+      e.preventDefault();
+      if (!e.shiftKey) {
+        this.selectNote();
+      }
+    }
+
+    /*if (e.shiftKey && tab) {
+      e.preventDefault();
+      const { clearSelectedNotes } = this.props;
+      clearSelectedNotes;
+    } else if (tab) {
+      e.preventDefault();
+      this.selectNote();
+    }*/
+  };
+
+  handleDelete = e => {
+    e.stopImmediatePropagation();
     const { id, deleteNote } = this.props;
     deleteNote(id);
   };
@@ -109,6 +169,9 @@ class StickyNote extends React.Component {
           transform: `translate(${x}px,${y}px)`,
           zIndex: selected ? "999999" : 1
         }}
+        tabIndex="0"
+        ref={this.note}
+        aria-label="sticky note"
       >
         <div
           className="container"
@@ -134,7 +197,7 @@ class StickyNote extends React.Component {
         {selected && (
           <FontAwesomeButton
             faClass={"fa fa-trash-o"}
-            handleOnClick={this.handleDelete}
+            handleOnClick={e => this.handleDelete(e)}
           />
         )}
       </div>

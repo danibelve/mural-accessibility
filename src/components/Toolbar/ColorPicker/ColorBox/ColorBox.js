@@ -18,7 +18,6 @@ class ColorBox extends React.Component {
 
   /* prevents element to lose focus */
   componentDidMount() {
-    console.log("volvi a renderizar");
     document.querySelector('div[aria-checked="true"]').focus();
   }
 
