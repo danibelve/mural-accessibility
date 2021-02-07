@@ -61,7 +61,7 @@ class StickyNote extends React.Component {
 
   catchDelete = e => {
     const enter = e.key === "Enter";
-    const deleteKey = e.key === "Backspace";
+    const deleteKey = e.key === "Delete";
 
     if (enter && e.srcElement === this.note.current) {
       e.preventDefault();
@@ -120,11 +120,14 @@ class StickyNote extends React.Component {
 
   stopEditingKeyboardFriendly = e => {
     const escape = e.key === "Escape";
+    const deleteKey = e.key === "Delete";
 
     if (escape) {
       e.preventDefault();
       this.setState({ editMode: false });
       this.selectNote();
+    } else if (deleteKey) {
+      e.stopImmediatePropagation();
     }
     this.checkContentToAddStickyNoteDescription();
   };
@@ -195,7 +198,7 @@ class StickyNote extends React.Component {
     return (
       <div
         aria-label={`Sticky note ` + index}
-        aria-describedby={this.state.hasContent ? "sticky-note-content" : false}
+        aria-describedby={this.state.hasContent ? "sticky-note-content" : null}
         className={StickyNoteClassnames}
         style={{
           width,
@@ -215,7 +218,7 @@ class StickyNote extends React.Component {
           className="container"
           style={{
             background: color,
-            boxShadow: `0px 0px 2px ${boxShadowColor}`,
+            boxShadow: `rgb(0 0 0) 2px 2px 2px`,
             padding: selected ? "6px" : "8px"
           }}
           id={id}
@@ -227,7 +230,7 @@ class StickyNote extends React.Component {
             contentEditable={editMode}
             onBlur={this.handleOnBlur}
             ref={this.textarea}
-            style={{ color: textColor, userSelect: editMode ? "text" : "none" }}
+            style={{ color: "#000", userSelect: editMode ? "text" : "none" }}
             suppressContentEditableWarning="true"
           >
             {text}

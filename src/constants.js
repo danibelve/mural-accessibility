@@ -2,7 +2,7 @@
 export const NOTE_DEFAULT_HEIGHT = "140px";
 export const NOTE_DEFAULT_WIDTH = "140px";
 export const NOTE_DEFAULT_COLOR = "#ffe4e1";
-export const ANNOUNCEMENT = "Se creo notita";
+export const ANNOUNCEMENT = "Created sticky note number";
 
 // Toolbar Defaults
 export const COLOR_PICKER_DEFAULT = [

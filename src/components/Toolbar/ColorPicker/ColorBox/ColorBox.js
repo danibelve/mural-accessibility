@@ -49,7 +49,9 @@ class ColorBox extends React.Component {
 
   render() {
     const { color, active, name } = this.props;
-    const className = classnames("colorBox", { activeBox: active });
+    const className = classnames("colorBox", "tooltip-container", {
+      activeBox: active
+    });
 
     return (
       <React.Fragment>
@@ -64,8 +66,9 @@ class ColorBox extends React.Component {
           onKeyPress={this.onKeyPress}
           data-color={color}
           style={{ background: color, border: this.getBorderStyle() }}
-        />
-        <Tooltip text={name} />
+        >
+          <Tooltip text={name} />
+        </div>
       </React.Fragment>
     );
   }

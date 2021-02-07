@@ -30,11 +30,14 @@ $ yarn install
 $ yarn start
 ```
 
-* Add Notes: Double Click
-* Select Note: Click
-* Multiple Selection: <kbd>Shift</kbd> + Click
-* Copy Notes: <kbd>CTRL</kbd>+<kbd>C</kbd>
-* Paste Notes: <kbd>CTRL</kbd>+<kbd>V</kbd>
+- Add Notes: Double Click
+- Edit note: Click or <kbd>Enter</kbd>
+- Stop Editing Note: <kbd>Escape</kbd>
+- Delete Note: <kbd>Delete</kbd>
+- Select Note: Click
+- Multiple Selection: <kbd>Shift</kbd> + Click
+- Copy Notes: <kbd>CTRL</kbd>+<kbd>C</kbd>
+- Paste Notes: <kbd>CTRL</kbd>+<kbd>V</kbd>
 
 <p align="center">
     <img align="center" src="images/react-mini-mural.png" alt="Markdownify" width="700">

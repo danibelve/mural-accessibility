@@ -121,7 +121,7 @@ class Mural extends React.Component {
             selected={selected}
             key={id}
             index={index + 1}
-            announcement={ANNOUNCEMENT}
+            announcement={`${ANNOUNCEMENT} + ${index + 1}`}
           />
         );
       }

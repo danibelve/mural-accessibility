@@ -18,6 +18,8 @@
 button:hover + [role="tooltip"],
 div:hover + [role="tooltip"],
 button:focus + [role="tooltip"],
-div:focus + [role="tooltip"] {
+div:focus + [role="tooltip"],
+.tooltip-container:focus [role="tooltip"],
+.tooltip-container:hover [role="tooltip"] {
   display: inline-block;
 }
