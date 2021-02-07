@@ -5,7 +5,7 @@
   padding: 0.5rem;
   padding-top: 1rem;
   box-sizing: border-box;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: center;
   border-right: 2px solid #d4d4d4;
@@ -13,4 +13,23 @@
   top: 0;
   left: 0;
   z-index: 999999;
+}
+
+button {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #4f5a65;
+  border-radius: 50%;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+.actions {
+  max-height: 190px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 50px;
 }

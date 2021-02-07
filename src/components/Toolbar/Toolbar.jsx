@@ -18,16 +18,16 @@ class Toolbar extends React.Component {
         aria-label="Add notes and select color"
       >
         <ColorPicker />
-        <button
-          type="button"
-          aria-label="Add note"
-          onClick={this.props.addNote}
-          style={{ dispay: "inline-block" }}
-        >
-          +
-        </button>
-        {/* Tooltip needs to be a component */}
-        <Tooltip text="Add note" />
+        <div className="actions">
+          <button
+            type="button"
+            aria-label="Add note"
+            onClick={this.props.addNote}
+          >
+            +
+          </button>
+          <Tooltip text="Add note" />
+        </div>
         <ClipboardManager />
       </div>
     );

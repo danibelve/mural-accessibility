@@ -49,6 +49,7 @@ class StickyNote extends React.Component {
       "keydown",
       this.editNoteKeyboardFriendly
     );
+    this.note.current.addEventListener("keydown", this.catchDelete);
     this.note.current.addEventListener(
       "keyup",
       this.handleFocusKeyboardFriendly
@@ -57,6 +58,17 @@ class StickyNote extends React.Component {
       '[role="alert"]'
     ).innerHTML = this.props.announcement;
   }
+
+  catchDelete = e => {
+    const enter = e.key === "Enter";
+    const deleteKey = e.key === "Backspace";
+
+    if (enter && e.srcElement === this.note.current) {
+      e.preventDefault();
+    } else if (deleteKey) {
+      this.handleDelete();
+    }
+  };
 
   selectNote = e => {
     const {
@@ -79,6 +91,7 @@ class StickyNote extends React.Component {
   };
 
   editNoteKeyboardFriendly = e => {
+    /* use code instead of key and make it global constansts */
     const enter = e.key === "Enter";
     const tab = e.shiftKey && e.key === "Tab";
 
@@ -125,19 +138,9 @@ class StickyNote extends React.Component {
         this.selectNote();
       }
     }
-
-    /*if (e.shiftKey && tab) {
-      e.preventDefault();
-      const { clearSelectedNotes } = this.props;
-      clearSelectedNotes;
-    } else if (tab) {
-      e.preventDefault();
-      this.selectNote();
-    }*/
   };
 
   handleDelete = e => {
-    e.stopImmediatePropagation();
     const { id, deleteNote } = this.props;
     deleteNote(id);
   };
@@ -203,7 +206,11 @@ class StickyNote extends React.Component {
         tabIndex="0"
         ref={this.note}
       >
-        <p role="alert" data-announcement={announcement}></p>
+        <p
+          role="alert"
+          className="sr-only"
+          data-announcement={announcement}
+        ></p>
         <div
           className="container"
           style={{

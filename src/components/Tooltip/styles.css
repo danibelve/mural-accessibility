@@ -1,15 +1,20 @@
 [role="tooltip"] {
   display: none;
-  width: 120px;
+  /* very arbitrary, needs a proper analysis */
+  width: 80px;
   background-color: black;
   color: #fff;
   text-align: center;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 5px 0;
 
   /* Position the tooltip */
   position: absolute;
+  position: relative;
+  left: 63px;
   z-index: 1;
+  right: -85px;
+  top: -39px;
 }
 
 /* Find an scalable solution to this */
@@ -17,6 +22,5 @@ button:hover + [role="tooltip"],
 div:hover + [role="tooltip"],
 button:focus + [role="tooltip"],
 div:focus + [role="tooltip"] {
-  display: block;
-  position: relative;
+  display: inline-block;
 }

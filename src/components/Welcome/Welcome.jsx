@@ -26,7 +26,14 @@ class Welcome extends React.Component {
             Add Note: <span className="key">Double Click</span>
           </p>
           <p>
-            Edit Note: <span className="key">Click</span>
+            Edit Note: <span className="key">Click</span> or{" "}
+            <span className="key">Enter</span>
+          </p>
+          <p>
+            Stop Editing Note: <span className="key">Escape</span>
+          </p>
+          <p>
+            Delete Note: <span className="key">Delete</span>
           </p>
           <p>
             Multiple Selection: <span className="key">Shift</span> +{" "}
