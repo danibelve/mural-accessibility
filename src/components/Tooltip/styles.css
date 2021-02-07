@@ -8,13 +8,10 @@
   border-radius: 8px;
   padding: 5px 0;
 
-  /* Position the tooltip */
+  /* Position the tooltip needs review */
   position: absolute;
-  position: relative;
   left: 63px;
   z-index: 1;
-  right: -85px;
-  top: -39px;
 }
 
 /* Find an scalable solution to this */
