@@ -11,8 +11,12 @@ class Welcome extends React.Component {
 
     return (
       <div className="Welcome">
-        <img src={logo} className="logo" alt="logo" />
+        {/* Needs styles */}
+        <h1>Mini Mural</h1>
+        {/* Removing alternative text - add notes on it */}
+        <img src={logo} className="logo" alt="" />
         <div className="instructions">
+          <h2 id="instructions">Instructions</h2>
           <p>
             Add Note: <span className="key">Double Click</span>
           </p>

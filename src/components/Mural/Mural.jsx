@@ -23,7 +23,6 @@ class Mural extends React.Component {
   constructor(props) {
     super(props);
     this.mural = React.createRef();
-    this.button = React.createRef();
   }
 
   componentDidMount() {
@@ -31,10 +30,7 @@ class Mural extends React.Component {
     this.mural.current.addEventListener("dblclick", this.addNoteToMural);
     this.mural.current.addEventListener("keydown", this.handleKeyDown);
     this.mural.current.addEventListener("keyup", this.handleKeyUp);
-    this.button.current.addEventListener(
-      "click",
-      this.addNoteToMuralKeyboardFriendly
-    );
+    //this.button.current.addEventListener("click", this.addNoteToMuralKeyboardFriendly);
   }
 
   clearSelectedNotes = e => {
@@ -70,11 +66,6 @@ class Mural extends React.Component {
   };
 
   addNoteToMuralKeyboardFriendly = e => {
-    e.stopImmediatePropagation();
-    if (e.target.classList.contains("sticky-note-content")) {
-      return;
-    }
-
     const { notes } = this.props;
 
     const counter = Object.keys(notes).length + 1;
@@ -94,7 +85,6 @@ class Mural extends React.Component {
     };
 
     addNote(noteToAdd);
-    console.log(StickyNote);
   };
 
   handleKeyDown = e => {
@@ -112,7 +102,7 @@ class Mural extends React.Component {
   render() {
     const { notes, selectedNotes } = this.props;
     const StickyNotes = Object.values(notes).map(
-      ({ id, text, color, width, height, x, y }) => {
+      ({ id, text, color, width, height, x, y }, index) => {
         const selected = selectedNotes.hasOwnProperty(id);
 
         return (
@@ -126,20 +116,18 @@ class Mural extends React.Component {
             y={y}
             selected={selected}
             key={id}
+            index={index + 1}
           />
         );
       }
     );
 
     return (
-      <div id="Mural" className="Mural" ref={this.mural} tabIndex="-1">
-        <button type="button" ref={this.button}>
-          Add note blah blah blah, el boton mas largo que viste en tu vida
-        </button>
+      <main id="Mural" className="Mural" ref={this.mural} tabIndex="-1">
+        <Toolbar addNote={e => this.addNoteToMuralKeyboardFriendly()} />
         <Welcome />
         {StickyNotes}
-        <Toolbar />
-      </div>
+      </main>
     );
   }
 }

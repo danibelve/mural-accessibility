@@ -11,6 +11,7 @@ class StickyNote extends React.Component {
     width: PropTypes.string,
     x: PropTypes.number,
     y: PropTypes.number,
+    index: PropTypes.number,
     selected: PropTypes.bool,
     setSelectedNote: PropTypes.func,
     pushSelectedNote: PropTypes.func,
@@ -25,6 +26,7 @@ class StickyNote extends React.Component {
     width: "100px",
     x: "0",
     y: "0",
+    hasContent: false,
     selected: false
   };
 
@@ -32,7 +34,7 @@ class StickyNote extends React.Component {
     super(props);
     this.textarea = React.createRef();
     this.note = React.createRef();
-    this.state = { editMode: false };
+    this.state = { editMode: false, hasContent: false };
   }
 
   componentDidMount() {
@@ -86,7 +88,18 @@ class StickyNote extends React.Component {
       clearSelectedNotesKeyboardFriendly;
       this.note.current.focus();
     }
+    this.checkContentToAddStickyNoteDescription();
   };
+
+  checkContentToAddStickyNoteDescription() {
+    const note = document.getElementById("sticky-note-content").innerHTML;
+    // must refactor
+    if (note === null || note === "") {
+      this.setState({ hasContent: false });
+    } else {
+      this.setState({ hasContent: true });
+    }
+  }
 
   stopEditingKeyboardFriendly = e => {
     const escape = e.key === "Escape";
@@ -96,6 +109,7 @@ class StickyNote extends React.Component {
       this.setState({ editMode: false });
       this.selectNote();
     }
+    this.checkContentToAddStickyNoteDescription();
   };
 
   handleFocusKeyboardFriendly = e => {
@@ -148,7 +162,17 @@ class StickyNote extends React.Component {
 
   render() {
     const { editMode } = this.state;
-    const { id, text, color, height, width, x, y, selected } = this.props;
+    const {
+      id,
+      text,
+      color,
+      height,
+      width,
+      x,
+      y,
+      selected,
+      index
+    } = this.props;
 
     const StickyNoteClassnames = classnames("StickyNote", {
       selected: selected,
@@ -162,6 +186,8 @@ class StickyNote extends React.Component {
 
     return (
       <div
+        aria-label={`Sticky note ` + index}
+        aria-describedby={this.state.hasContent ? "sticky-note-content" : false}
         className={StickyNoteClassnames}
         style={{
           width,
@@ -171,7 +197,6 @@ class StickyNote extends React.Component {
         }}
         tabIndex="0"
         ref={this.note}
-        aria-label="sticky note"
       >
         <div
           className="container"
@@ -184,6 +209,7 @@ class StickyNote extends React.Component {
           data-type="sticky-note"
         >
           <p
+            id="sticky-note-content"
             className="sticky-note-content"
             contentEditable={editMode}
             onBlur={this.handleOnBlur}
