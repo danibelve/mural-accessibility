@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Color from "color";
 import classnames from "classnames";
 import "./styles.css";
+import Tooltip from "../../../Tooltip/Tooltip";
 
 class ColorBox extends React.Component {
   static propTypes = {
@@ -51,18 +52,21 @@ class ColorBox extends React.Component {
     const className = classnames("colorBox", { activeBox: active });
 
     return (
-      <div
-        role="radio"
-        tabIndex="0"
-        aria-checked={active}
-        aria-label={name}
-        value={color}
-        className={className}
-        onClick={this.handleClick}
-        onKeyPress={this.onKeyPress}
-        data-color={color}
-        style={{ background: color, border: this.getBorderStyle() }}
-      />
+      <React.Fragment>
+        <div
+          role="radio"
+          tabIndex="0"
+          aria-checked={active}
+          aria-label={name}
+          value={color}
+          className={className}
+          onClick={this.handleClick}
+          onKeyPress={this.onKeyPress}
+          data-color={color}
+          style={{ background: color, border: this.getBorderStyle() }}
+        />
+        <Tooltip text={name} />
+      </React.Fragment>
     );
   }
 }

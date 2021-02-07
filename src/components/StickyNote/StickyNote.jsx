@@ -38,6 +38,7 @@ class StickyNote extends React.Component {
   }
 
   componentDidMount() {
+    console.log("entre");
     this.textarea.current.addEventListener("click", this.selectNote);
     this.textarea.current.addEventListener("dblclick", this.editNote);
     this.textarea.current.addEventListener(
@@ -52,6 +53,9 @@ class StickyNote extends React.Component {
       "keyup",
       this.handleFocusKeyboardFriendly
     );
+    document.querySelector(
+      '[role="alert"]'
+    ).innerHTML = this.props.announcement;
   }
 
   selectNote = e => {
@@ -171,7 +175,8 @@ class StickyNote extends React.Component {
       x,
       y,
       selected,
-      index
+      index,
+      announcement
     } = this.props;
 
     const StickyNoteClassnames = classnames("StickyNote", {
@@ -198,6 +203,7 @@ class StickyNote extends React.Component {
         tabIndex="0"
         ref={this.note}
       >
+        <p role="alert" data-announcement={announcement}></p>
         <div
           className="container"
           style={{

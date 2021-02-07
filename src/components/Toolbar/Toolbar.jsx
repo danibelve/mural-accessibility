@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ClipboardManager from "../ClipboardManager";
 import ColorPicker from "./ColorPicker";
+import Tooltip from "../Tooltip/Tooltip";
 import "./styles.css";
 
 class Toolbar extends React.Component {
@@ -21,9 +22,12 @@ class Toolbar extends React.Component {
           type="button"
           aria-label="Add note"
           onClick={this.props.addNote}
+          style={{ dispay: "inline-block" }}
         >
           +
         </button>
+        {/* Tooltip needs to be a component */}
+        <Tooltip text="Add note" />
         <ClipboardManager />
       </div>
     );

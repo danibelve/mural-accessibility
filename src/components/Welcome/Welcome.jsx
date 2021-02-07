@@ -1,9 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { isEmpty } from "lodash";
 import logo from "./logo.svg";
 import "./styles.css";
 
 class Welcome extends React.Component {
+  static propTypes = {
+    announcement: PropTypes.string
+  };
+
   render() {
     const { notes } = this.props;
 

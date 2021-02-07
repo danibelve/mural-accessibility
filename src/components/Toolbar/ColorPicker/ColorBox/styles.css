@@ -6,3 +6,12 @@
   cursor: pointer;
   box-sizing: border-box;
 }
+
+[role="tooltip"] {
+  display: none;
+}
+
+div:hover + [role="tooltip"],
+div:focus + [role="tooltip"] {
+  display: block;
+}

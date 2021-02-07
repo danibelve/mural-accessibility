@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import Toolbar from "../Toolbar";
 import StickyNote from "../StickyNote";
 
-import { NOTE_DEFAULT_HEIGHT, NOTE_DEFAULT_WIDTH } from "../../constants";
+import {
+  NOTE_DEFAULT_HEIGHT,
+  NOTE_DEFAULT_WIDTH,
+  ANNOUNCEMENT
+} from "../../constants";
 import { pixelsToInt } from "../../utils";
 import "./styles.css";
 import Welcome from "../Welcome";
@@ -117,6 +121,7 @@ class Mural extends React.Component {
             selected={selected}
             key={id}
             index={index + 1}
+            announcement={ANNOUNCEMENT}
           />
         );
       }
@@ -124,7 +129,7 @@ class Mural extends React.Component {
 
     return (
       <main id="Mural" className="Mural" ref={this.mural} tabIndex="-1">
-        <Toolbar addNote={e => this.addNoteToMuralKeyboardFriendly()} />
+        <Toolbar addNote={() => this.addNoteToMuralKeyboardFriendly()} />
         <Welcome />
         {StickyNotes}
       </main>
