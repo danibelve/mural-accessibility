@@ -4,6 +4,7 @@ import Color from "color";
 import classnames from "classnames";
 import "./styles.css";
 import Tooltip from "../../../Tooltip/Tooltip";
+import { ENTER } from "../../../../constants";
 
 class ColorBox extends React.Component {
   static propTypes = {
@@ -23,7 +24,7 @@ class ColorBox extends React.Component {
   }
 
   onKeyPress = e => {
-    const enter = e.key === "Enter";
+    const enter = e.key === ENTER;
     if (enter) {
       e.preventDefault();
       const color = e.target.dataset.color;

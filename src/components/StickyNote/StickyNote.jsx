@@ -4,6 +4,7 @@ import classnames from "classnames";
 import Color from "color";
 import FontAwesomeButton from "../FontAwesomeButton";
 import "./styles.css";
+import { ENTER, DELETE, TAB, ESCAPE } from "../../constants";
 class StickyNote extends React.Component {
   static propTypes = {
     color: PropTypes.string,
@@ -60,8 +61,8 @@ class StickyNote extends React.Component {
   }
 
   catchDelete = e => {
-    const enter = e.key === "Enter";
-    const deleteKey = e.key === "Delete";
+    const enter = e.key === ENTER;
+    const deleteKey = e.key === DELETE;
 
     if (enter && e.srcElement === this.note.current) {
       e.preventDefault();
@@ -92,8 +93,8 @@ class StickyNote extends React.Component {
 
   editNoteKeyboardFriendly = e => {
     /* use code instead of key and make it global constansts */
-    const enter = e.key === "Enter";
-    const tab = e.shiftKey && e.key === "Tab";
+    const enter = e.key === ENTER;
+    const tab = e.shiftKey && e.key === TAB;
 
     // e.stopPropagation not working??
     if (enter && e.srcElement === this.note.current) {
@@ -119,8 +120,8 @@ class StickyNote extends React.Component {
   }
 
   stopEditingKeyboardFriendly = e => {
-    const escape = e.key === "Escape";
-    const deleteKey = e.key === "Delete";
+    const escape = e.key === ESCAPE;
+    const deleteKey = e.key === DELETE;
 
     if (escape) {
       e.preventDefault();
@@ -133,7 +134,7 @@ class StickyNote extends React.Component {
   };
 
   handleFocusKeyboardFriendly = e => {
-    const tab = e.key === "Tab";
+    const tab = e.key === TAB;
 
     if (tab) {
       e.preventDefault();

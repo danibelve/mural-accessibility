@@ -6,7 +6,8 @@ import StickyNote from "../StickyNote";
 import {
   NOTE_DEFAULT_HEIGHT,
   NOTE_DEFAULT_WIDTH,
-  ANNOUNCEMENT
+  ANNOUNCEMENT,
+  SHIFT
 } from "../../constants";
 import { pixelsToInt } from "../../utils";
 import "./styles.css";
@@ -92,13 +93,13 @@ class Mural extends React.Component {
   };
 
   handleKeyDown = e => {
-    if (e.key === "Shift") {
+    if (e.key === SHIFT) {
       this.props.enableMultipleSelection();
     }
   };
 
   handleKeyUp = e => {
-    if (e.key === "Shift") {
+    if (e.key === SHIFT) {
       this.props.disableMultipleSelection();
     }
   };
