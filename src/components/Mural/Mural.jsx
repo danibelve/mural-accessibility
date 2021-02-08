@@ -35,7 +35,6 @@ class Mural extends React.Component {
     this.mural.current.addEventListener("dblclick", this.addNoteToMural);
     this.mural.current.addEventListener("keydown", this.handleKeyDown);
     this.mural.current.addEventListener("keyup", this.handleKeyUp);
-    //this.button.current.addEventListener("click", this.addNoteToMuralKeyboardFriendly);
   }
 
   clearSelectedNotes = e => {

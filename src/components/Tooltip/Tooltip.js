@@ -7,10 +7,6 @@ class Mural extends React.Component {
     text: PropTypes.string
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {}
 
   render() {

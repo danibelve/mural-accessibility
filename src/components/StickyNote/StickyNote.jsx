@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import Color from "color";
 import FontAwesomeButton from "../FontAwesomeButton";
 import "./styles.css";
 import { ENTER, DELETE, TAB, ESCAPE } from "../../constants";
@@ -17,7 +16,8 @@ class StickyNote extends React.Component {
     setSelectedNote: PropTypes.func,
     pushSelectedNote: PropTypes.func,
     updateNote: PropTypes.func,
-    deleteNote: PropTypes.func
+    deleteNote: PropTypes.func,
+    clearSelectedNotesKeyboardFriendly: PropTypes.func
   };
 
   static defaultProps = {
@@ -102,8 +102,6 @@ class StickyNote extends React.Component {
       this.setState({ editMode: true });
       this.textarea.current.focus();
     } else if (tab) {
-      const { clearSelectedNotesKeyboardFriendly } = this.props;
-      clearSelectedNotesKeyboardFriendly;
       this.note.current.focus();
     }
     this.checkContentToAddStickyNoteDescription();
@@ -190,11 +188,6 @@ class StickyNote extends React.Component {
       selected: selected,
       "edit-mode": editMode
     });
-
-    const textColor = Color(color)
-      .darken(0.4)
-      .desaturate(0.3);
-    const boxShadowColor = Color(color).darken(0.1);
 
     return (
       <div
