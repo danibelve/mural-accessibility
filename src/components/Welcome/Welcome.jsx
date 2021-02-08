@@ -23,7 +23,8 @@ class Welcome extends React.Component {
         <div className="instructions">
           <h2 id="instructions">Instructions</h2>
           <p>
-            Add Note: <span className="key">Double Click</span>
+            Add Note: <span className="key">Double Click</span> or press the{" "}
+            <span className="key">+</span> button
           </p>
           <p>
             Edit Note: <span className="key">Click</span> or{" "}

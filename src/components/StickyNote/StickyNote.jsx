@@ -39,7 +39,6 @@ class StickyNote extends React.Component {
   }
 
   componentDidMount() {
-    console.log("entre");
     this.textarea.current.addEventListener("click", this.selectNote);
     this.textarea.current.addEventListener("dblclick", this.editNote);
     this.textarea.current.addEventListener(

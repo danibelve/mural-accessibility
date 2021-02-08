@@ -30,7 +30,7 @@ $ yarn install
 $ yarn start
 ```
 
-- Add Notes: Double Click
+- Add Notes: Double Click or press the "+" button inside the toolbar.
 - Edit note: Click or <kbd>Enter</kbd>
 - Stop Editing Note: <kbd>Escape</kbd>
 - Delete Note: <kbd>Delete</kbd>
